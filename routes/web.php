@@ -27,8 +27,8 @@ Route::get('/', function () {
 });
 
 Route::resource('chirps', ChirpController::class)
-->only(['index', 'store', 'update'])
-->middleware(['auth', 'verified']);
+    ->only(['index', 'store', 'update'])
+    ->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -40,4 +40,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
