@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Chirp;
 
 use Illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Http\FormRequest;

@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ChirpStoreRequest;
-use App\Http\Requests\ChirpUpdateRequest;
+use App\Http\Requests\Chirp\ChirpStoreRequest;
+use App\Http\Requests\Chirp\ChirpUpdateRequest;
 use App\Models\Chirp;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Packages\UseCase\Chirp\IndexAction;
 
 class ChirpController extends Controller
 {
-    public function index(): Response
+    public function index(IndexAction $action): Response
     {
+        $chirps = $action();
         return Inertia::render('Chirps/Index', [
-            'chirps' => Chirp::with('user:id,name')->latest()->get(),
+            'chirps' => $chirps,
         ]);
     }
 

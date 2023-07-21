@@ -31,7 +31,7 @@ const editing = ref(false);
             <div class="flex justify-between items-center">
                 <div>
                     <span class="text-gray-800">{{ chirp.user.name }}</span>
-                    <small class="ml-2 text-sm text-gray-600">{{ dayjs(chirp.created_at).fromNow() }}</small>
+                    <small class="ml-2 text-sm text-gray-600">{{ dayjs(chirp.createdAt).fromNow() }}</small>
                     <small v-if="chirp.created_at !== chirp.updated_at" class="text-sm text-gray-600"> &middot;
                         edited</small>
                 </div>
@@ -51,9 +51,11 @@ const editing = ref(false);
                             @click="editing = true">
                             Edit
                         </button>
+                        <!-- 
+                            Laravelのモデル以外を返却すると、ルート情報がないためエラーになる
                         <DropdownLink as="button" :href="route('chirps.destroy', chirp.id)" method="delete">
                             Delete
-                        </DropdownLink>
+                        </DropdownLink> -->
                     </template>
                 </Dropdown>
             </div>
